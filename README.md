@@ -144,8 +144,8 @@ SELECT COUNT(DISTINCT(customer_id)) AS unique_customers ,category
 FROM retailsales 
 GROUP by  2;
 ```
-10. Classify orders into Morning, Afternoon, and Evening shifts and count transactions per shift.
-```
+## 10. Classify orders into Morning, Afternoon, and Evening shifts and count transactions per shift.
+```bash
 WITH hourly_sales
 AS
 	(SELECT *,

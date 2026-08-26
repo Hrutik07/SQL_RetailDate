@@ -60,7 +60,13 @@ The exact schema and data types should be verified against the database used to 
 
 `RetailerData.sql` covers the following analysis tasks:
 
-1. Retrieve all sales made on a specific date.
+## 1. Retrieve all sales made on a specific date.
+```
+select * 
+from retailsales 
+where 
+sale_date='2022-11-05';
+```
 2. Filter clothing transactions by quantity and November 2022.
 3. Calculate total sales and order count for each category.
 4. Calculate the average customer age for the Beauty category.

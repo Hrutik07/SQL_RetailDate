@@ -61,14 +61,14 @@ The exact schema and data types should be verified against the database used to 
 `RetailerData.sql` covers the following analysis tasks:
 
 ## 1. Retrieve all sales made on a specific date.
-```
+```bash
 SELECT * 
 FROM retailsales 
 WHERE 
 sale_date='2022-11-05';
 ```
 ## 2. Filter clothing transactions by quantity and November 2022.
-```
+```bash
 SELECT *
 FROM retailsales
 WHERE
@@ -78,7 +78,7 @@ AND sale_date <  '2022-12-01'
 AND quantiy < 4;
 ```
 ## 3. Calculate total sales and order count for each category.
-```
+```bash
 SELECT category,
 SUM(total_sale) AS total_avg,
 COUNT(*) AS count_order
@@ -86,7 +86,8 @@ FROM retailsales
 GROUP BY 1;
 ```
 ## 4. Calculate the average customer age for the Beauty category.
-```SELECT 
+```bash
+SELECT 
 ROUND(AVG(age),2)
 FROM 
 retailsales 
@@ -94,13 +95,13 @@ WHERE
 category='Beauty';
 ```
 ## 5. Find transactions with sales greater than 1,000.
-```
+```bash
 SELECT * 
 FROM retailsales 
 WHERE total_sale>1000;
 ```
 ## 6. Count transactions by gender and category.
-```
+```bash
 SELECT
 count(transactions_id) AS count_transaction,
 gender,category
@@ -109,7 +110,7 @@ GROUP by gender,
 category;
 ```
 ## 7. Calculate average sales by month and identify the best-selling month in each year.
-```
+```bash
 SELECT * FROM 
 (WITH monthly_sales AS (
     SELECT 
@@ -131,7 +132,7 @@ FROM monthly_sales)
 WHERE RANK =1;
 ```
 ## 8. Find the top 5 customers based on total sales.
-```
+```bash
 SELECT customer_id,SUM(total_sale) AS total_purchase
 FROM retailsales 
 GROUP by 1
@@ -139,7 +140,7 @@ ORDER by 2 DESC
 LIMIT 5;
 ```
 ## 9. Count unique customers in each category.
-```
+```bash
 SELECT COUNT(DISTINCT(customer_id)) AS unique_customers ,category
 FROM retailsales 
 GROUP by  2;

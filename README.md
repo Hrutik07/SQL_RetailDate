@@ -2,7 +2,7 @@
 
 A SQL practice project for analyzing retail sales data using queries focused on transactions, categories, customers, sales trends, and time-based order patterns.
 
-## 📌 Project Overview
+##  Project Overview
 
 This project contains a collection of SQL queries written against a `retailsales` table. The queries demonstrate common SQL techniques used in data analysis, including:
 
@@ -17,7 +17,7 @@ This project contains a collection of SQL queries written against a `retailsales
 - Extracting year, month, and hour from date/time fields
 - Creating business-friendly time shifts with `CASE`
 
-## 🗂️ Project Structure
+##  Project Structure
 
 ```text
 .
@@ -25,14 +25,14 @@ This project contains a collection of SQL queries written against a `retailsales
 └── README.md           # Project documentation
 ```
 
-## 🛠️ Technologies
+##  Technologies
 
 - **SQL**
 - Relational database supporting standard SQL functions such as `EXTRACT()`, CTEs, and window functions
 
 > **Note:** Some syntax in the SQL file, such as `EXTRACT()` and date/time handling, is database-specific. PostgreSQL-compatible syntax is a reasonable choice for running the current queries.
 
-## 📊 Dataset
+##  Dataset
 
 The queries operate on a table named:
 
@@ -56,7 +56,7 @@ The SQL file references fields including:
 
 The exact schema and data types should be verified against the database used to run the project.
 
-## 🔎 Analysis Questions
+##  Analysis Questions
 
 `RetailerData.sql` covers the following analysis tasks:
 
@@ -71,7 +71,7 @@ The exact schema and data types should be verified against the database used to 
 9. Count unique customers in each category.
 10. Classify orders into Morning, Afternoon, and Evening shifts and count transactions per shift.
 
-## 🚀 How to Run
+##  How to Run
 
 ### 1. Clone the repository
 
@@ -96,7 +96,7 @@ psql -d <database_name> -f RetailerData.sql
 
 Replace `<database_name>` with your database name.
 
-## 💡 SQL Concepts Demonstrated
+##  SQL Concepts Demonstrated
 
 ### Filtering
 
@@ -134,7 +134,7 @@ The shift analysis uses `CASE` to convert sale times into business-friendly peri
 - **Afternoon:** 12:00–17:00
 - **Evening:** after 17:00
 
-## ⚠️ Query Notes
+##  Query Notes
 
 Before using the SQL file in production or presenting the results, review the following items:
 
@@ -144,7 +144,7 @@ Before using the SQL file in production or presenting the results, review the fo
 - **Q6:** The query uses `transactions_id`; verify that this matches the actual transaction ID column in the database.
 - **Database compatibility:** Functions such as `EXTRACT()` may require adjustments depending on the SQL database being used.
 
-## 🎯 Learning Objectives
+##  Learning Objectives
 
 This project is useful for practicing SQL skills that are commonly required in entry-level data analyst and business intelligence roles, especially:
 
@@ -156,7 +156,7 @@ This project is useful for practicing SQL skills that are commonly required in e
 - Business KPI calculation
 - Advanced SQL querying
 
-## 📈 Possible Improvements
+##  Possible Improvements
 
 Future versions of the project could include:
 
@@ -170,7 +170,7 @@ Future versions of the project could include:
 - Views for commonly used business metrics
 - A Power BI or Tableau dashboard built from the SQL results
 
-## 👤 Author
+## Author
 
 **Hrutik Hiwase**
 

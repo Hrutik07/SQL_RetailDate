@@ -62,21 +62,102 @@ The exact schema and data types should be verified against the database used to 
 
 ## 1. Retrieve all sales made on a specific date.
 ```
-select * 
-from retailsales 
-where 
+SELECT * 
+FROM retailsales 
+WHERE 
 sale_date='2022-11-05';
 ```
-2. Filter clothing transactions by quantity and November 2022.
-3. Calculate total sales and order count for each category.
-4. Calculate the average customer age for the Beauty category.
-5. Find transactions with sales greater than 1,000.
-6. Count transactions by gender and category.
-7. Calculate average sales by month and identify the best-selling month in each year.
-8. Find the top 5 customers based on total sales.
-9. Count unique customers in each category.
+## 2. Filter clothing transactions by quantity and November 2022.
+```
+SELECT *
+FROM retailsales
+WHERE
+category='Clothing'
+AND sale_date >= '2022-11-01'
+AND sale_date <  '2022-12-01'
+AND quantiy < 4;
+```
+## 3. Calculate total sales and order count for each category.
+```
+SELECT category,
+SUM(total_sale) AS total_avg,
+COUNT(*) AS count_order
+FROM retailsales
+GROUP BY 1;
+```
+## 4. Calculate the average customer age for the Beauty category.
+```SELECT 
+ROUND(AVG(age),2)
+FROM 
+retailsales 
+WHERE 
+category='Beauty';
+```
+## 5. Find transactions with sales greater than 1,000.
+```
+SELECT * 
+FROM retailsales 
+WHERE total_sale>1000;
+```
+## 6. Count transactions by gender and category.
+```
+SELECT
+count(transactions_id) AS count_transaction,
+gender,category
+FROM retailsales
+GROUP by gender,
+category;
+```
+## 7. Calculate average sales by month and identify the best-selling month in each year.
+```
+SELECT * FROM 
+(WITH monthly_sales AS (
+    SELECT 
+        EXTRACT(YEAR FROM sale_date) AS year,
+        EXTRACT(MONTH FROM sale_date) AS month,
+        AVG(total_sale) AS avg_sales
+    FROM retailsales
+    GROUP BY 1, 2
+)
+SELECT
+    year,
+    month,
+    avg_sales,
+    RANK() OVER (
+        PARTITION BY year
+        ORDER BY avg_sales DESC
+    ) AS rank
+FROM monthly_sales) 
+WHERE RANK =1;
+```
+## 8. Find the top 5 customers based on total sales.
+```
+SELECT customer_id,SUM(total_sale) AS total_purchase
+FROM retailsales 
+GROUP by 1
+ORDER by 2 DESC
+LIMIT 5;
+```
+## 9. Count unique customers in each category.
+```
+SELECT COUNT(DISTINCT(customer_id)) AS unique_customers ,category
+FROM retailsales 
+GROUP by  2;
+```
 10. Classify orders into Morning, Afternoon, and Evening shifts and count transactions per shift.
-
+```
+WITH hourly_sales
+AS
+	(SELECT *,
+		CASE 
+			WHEN EXTRACT(HOUR FROM sale_time)<12 THEN 'Morning'
+			When extract(HOUR FROM sale_time) BETWEEN 12 AND 17 THEN 'Afternoon'
+			ELSE 'Evening'
+		END as shift
+	FROM retailsales)
+SELECT shift,COUNT(transactions_id) FROM hourly_sales
+GROUP by shift;
+```
 ##  How to Run
 
 ### 1. Clone the repository
@@ -180,4 +261,4 @@ Future versions of the project could include:
 
 **Hrutik Hiwase**
 
-If you found this project useful, feel free to ⭐ the repository and use the queries as a starting point for your own SQL practice.
+If you found this project useful, feel free to the repository and use the queries as a starting point for your own SQL practice.
